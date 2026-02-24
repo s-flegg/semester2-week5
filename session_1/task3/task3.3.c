@@ -71,14 +71,24 @@ int main(void) {
     scanf("%d", &credit_score);
 
     /* subtask1: Age eligibility check */
-	// Complete your code here
-
-
+	if (age<21 || age>80) {
+        printf("Loan status: Rejected (Age not eligible)");
+        return 1;
+    }
 
     /* subtask 2: Loan-specific checks using switch*/
-	// Complete your code here
     switch (loan_type) {
-        case 1:
+        case 1: // home loan
+            approved = (income >= 5000 && credit_score >= 700) ? true : false;
+            max_loan = income * 60;
+            break;
+        case 2: // car loan
+            approved = (income >= 3000 && credit_score >= 650) ? true : false;
+            max_loan = income * 20;
+            break;
+        case 3: // personal loan
+            approved = (income >= 2000 && credit_score >= 600) ? true : false;
+            max_loan = income * 10;
             break;
 
         default:
@@ -87,10 +97,31 @@ int main(void) {
     }
 
     /* subtask 3: Output result */
-	// Complete your code here
 	if (approved) {
-		// todo
+		/* "Loan type: xxx
+  		Loan status: xxx
+  		Maximum loan amount: xxx")
+        */
+        switch (loan_type) {
+            case 1:
+                printf("Loan type: Home Loan\n");
+                break;
+            case 2:
+                printf("Loan type: Car Loan\n");
+                break;
+            case 3:
+                printf("Loan type: Personal Loan\n");
+                break;
+            default:
+                printf("Invalid loan type\n");
+                return 1;
+        }
+        printf("Loan Status: Approved\n");
+        printf("Maximum loan amount: %.2f", max_loan);
 	}
+    else {
+        printf("Loan status: Rejected (Criteria not met)\n");
+    }
 
 
     return 0;
