@@ -12,7 +12,15 @@
  #include <string.h>
  
  int main(void) {
-	 
+	 char quit[100] = "quit";
+	 char buff[100];
+
+	 do {
+		printf("Please enter a message: ");
+		fgets(buff, 100, stdin);
+		sscanf(buff, "%s", &*buff);
+		printf("You entered: %s\n", buff);
+	 } while (strcmp(quit, buff) != 0);
 	 
 	 return 0;
  }
