@@ -11,7 +11,11 @@ int main(void){
      char password[50];
 	 
 	 // compare using strcmp(str1,str2) from week 4
-	 // complete the rest of the code here
+     char wantedPassword[50] = "secure123";
+	 do {
+        printf("Please enter the password: ");
+        scanf("%s", &*password);
+     } while (strcmp(password, wantedPassword) != 0);
 	
     return 0;
 }
