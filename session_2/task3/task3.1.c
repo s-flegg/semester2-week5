@@ -25,35 +25,54 @@ int main(void) {
     printf("=== Number Guessing Game ===\n");
     printf("I'm thinking of a number between %d and %d\n", min, max);
     
-    // TODO: Generate a random number between min and max
-    // Hint: target = min + rand() % (max - min + 1);
+    // Generate a random number between min and max
+    target = min + rand() % (max - min + 1);
     
-    // TODO: Implement the main game loop
-    // This should continue until the person decides to quit
+    // Implement the main game loop
+    do {
     
         // Reset number of guesses for a new game
         num_guesses = 0;
         
-        // TODO: Implement the guessing loop
+        // Implement the guessing loop
         // This should continue until the correct number is guessed
+        while (1) {
         
             printf("Enter your guess: ");
             
-            // TODO: Read and process the input
+            // Read and process the input
             // Use fgets() to read input
             // Use atoi() to convert to integer
+            fgets(input, 20, stdin);
+            guess = atoi(input);
             
             num_guesses++;
             
-            // TODO: Check if the guess is correct, too high, or too low
+            // Check if the guess is correct, too high, or too low
             // Provide appropriate in-game feedback
+            if (guess == target) {
+                printf("Correct!\n");
+                break;
+            }
+            else if (guess > target) {
+                printf("Too high\n");
+            }
+            else {
+                printf("Too low\n");
+            }
             
-            // TODO: Offer a hint after several failed attempts
+            // Offer a hint after several failed attempts
+            if (num_guesses > 5) {
+                printf("It ends with a %d", target % 10);
+            }
             
-        
-        // TODO: Ask if the person wants to play again
+        }
+        // Ask if the person wants to play again
         // Update the 'playing' flag based on the answer
-    
+        printf("Do you want to play again (Y/n): ");
+        fgets(input, 20, stdin);
+        playing = (strcmp(input, "Y") != 0) ? 1 : 0;
+    } while (playing);
     
     printf("\nThanks for playing!\n");
     return 0;
